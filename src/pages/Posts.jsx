@@ -1,6 +1,18 @@
-import posts from "../data/posts";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Posts() {
+  const [posts, setPosts] = useState([]);
+  const getPosts = () => {
+    axios.get("http://127.0.0.1:3000/posts").then((res) => {
+      setPosts(res.data.data);
+    });
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <>
       <section className="flex flex-wrap gap-4 w-full">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import originalPosts from "../data/posts";
 import { useNavigate } from "react-router-dom";
 
@@ -8,13 +9,21 @@ export default function AddPost() {
   const [formPost, setFormPost] = useState({
     title: "",
     content: "",
+    image: "",
+    tags: [],
   });
+
+  const addPost = (post) => {
+    axios.post("http://127.0.0.1:3000/posts", post).then((res) => {
+      console.log(res.data);
+    });
+  };
 
   const handleAddPost = (e) => {
     e.preventDefault();
-    const newPost = { ...formPost, id: posts.length + 1 };
+    const newPost = { ...formPost, id: posts.length + 1, image: "ciao", tags: ["ciao", "ciao2"] };
     console.log(newPost);
-    setPosts([...posts, newPost]);
+    addPost(newPost);
     navigate("/posts");
   };
 
