@@ -5,9 +5,13 @@ import Footer from "../components/layout/default/Footer";
 export default function DefaultLayout() {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="mt-16 flex-grow">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
