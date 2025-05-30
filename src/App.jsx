@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DefaultLayout from "./assets/layouts/DefaultLayout";
-import HomePage from "./assets/pages/HomePage";
-import About from "./assets/pages/About";
-import Posts from "./assets/pages/Posts";
+import DefaultLayout from "./layouts/DefaultLayout";
+import HomePage from "./pages/HomePage";
+import About from "./pages/About";
+import Posts from "./pages/Posts";
+import AddPost from "./pages/AddPost";
+import PostLayout from "./layouts/PostLayout";
 
 function App() {
   return (
@@ -11,7 +13,10 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts" element={<PostLayout />}>
+            <Route index element={<Posts />} />
+            <Route path="/posts/add-post" element={<AddPost />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

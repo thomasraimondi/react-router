@@ -8,17 +8,17 @@ export default function Header() {
       </a>
       <ul className="flex gap-4">
         <li>
-          <NavLink to="/" className={({ isActive }) => (isActive ? "text-blue-500 font-bold" : "")}>
+          <NavLink to="/" className={({ isActive }) => (isActive ? "text-black font-bold" : "")}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/about" className={({ isActive }) => (isActive ? "text-blue-500 font-bold" : "")}>
+          <NavLink to="/about" className={({ isActive }) => (isActive ? "text-black font-bold" : "")}>
             About
           </NavLink>
         </li>
         <li>
-          <NavLink to="/posts" className={({ isActive }) => (isActive ? "text-blue-500 font-bold" : "")}>
+          <NavLink to="/posts" className={({ isActive }) => (isActive ? "text-black font-bold" : "")}>
             Posts
           </NavLink>
         </li>
