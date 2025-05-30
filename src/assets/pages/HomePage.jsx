@@ -5,7 +5,7 @@ export default function HomePage() {
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbQcM1E5wXkHOZniSj04yCCC3KsPMLsSnP2A&s" alt="Logo" className="w-full h-full object-cover" />
         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">Thomas's Blog</span>
       </div>
-      <div className="mt-5 container mx-auto flex flex-col gap-4">
+      <div className="my-5 container mx-auto flex flex-col gap-4">
         <section className="flex flex-col gap-4">
           <h2 className="text-2xl font-bold">Benvenuto nel sito dei post!</h2>
           <p>
