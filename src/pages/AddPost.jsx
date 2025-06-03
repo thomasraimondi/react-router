@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import originalPosts from "../data/posts";
 import { useNavigate } from "react-router-dom";
 
 export default function AddPost() {
   const navigate = useNavigate();
-  const [posts, setPosts] = useState(originalPosts);
+  const [post, setPost] = useState({});
   const [formPost, setFormPost] = useState({
     title: "",
     content: "",
@@ -15,16 +14,19 @@ export default function AddPost() {
 
   const addPost = (post) => {
     axios.post("http://127.0.0.1:3000/posts", post).then((res) => {
-      console.log(res.data);
+      setPost(res.data.data);
     });
   };
 
+  useEffect(() => {
+    if (post.id) {
+      navigate(`/posts/${post.id}`);
+    }
+  }, [post]);
+
   const handleAddPost = (e) => {
     e.preventDefault();
-    const newPost = { ...formPost, id: posts.length + 1, image: "ciao", tags: ["ciao", "ciao2"] };
-    console.log(newPost);
-    addPost(newPost);
-    navigate("/posts");
+    addPost(formPost);
   };
 
   return (
@@ -41,10 +43,18 @@ export default function AddPost() {
         />
         <input
           className="border-2 border-gray-200 rounded-md p-2"
-          type="text"
+          type="textarea"
           placeholder="Content"
           value={formPost.content}
           onChange={(e) => setFormPost({ ...formPost, content: e.target.value })}
+          required
+        />
+        <input
+          className="border-2 border-gray-200 rounded-md p-2"
+          type="text"
+          placeholder="Image"
+          value={formPost.image}
+          onChange={(e) => setFormPost({ ...formPost, image: e.target.value })}
           required
         />
         <div className="flex justify-end">

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import HeaderPost from "../components/Post/HeaderPost";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -15,6 +17,7 @@ export default function Posts() {
 
   return (
     <>
+      <HeaderPost />
       <section className="flex flex-wrap gap-4 w-full">
         {posts.map((post) => (
           <div className="card w-1/4 border-2 border-gray-200 rounded-md shadow-md grow" key={post.id}>
@@ -27,8 +30,11 @@ export default function Posts() {
             <div className="card-body">
               <p className="card-text p-4">{post.content}</p>
             </div>
-            <div className="card-footer p-4 border-t border-gray-200">
+            <div className="card-footer p-4 border-t border-gray-200 flex justify-between items-center">
               <button className="btn btn-primary">post by: Thomas</button>
+              <Link to={`/posts/${post.id}`}>
+                <button className="border-2 border-gray-200 rounded-md p-2 bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">View</button>
+              </Link>
             </div>
           </div>
         ))}

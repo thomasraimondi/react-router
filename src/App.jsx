@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Posts from "./pages/Posts";
 import AddPost from "./pages/AddPost";
 import PostLayout from "./layouts/PostLayout";
+import DetailPost from "./pages/DetailPost";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/posts" element={<PostLayout />}>
             <Route index element={<Posts />} />
             <Route path="/posts/add-post" element={<AddPost />} />
+            <Route path="/posts/:id" element={<DetailPost />} />
           </Route>
         </Route>
       </Routes>
