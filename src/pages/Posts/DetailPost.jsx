@@ -28,7 +28,11 @@ export default function DetailPost() {
       <h1 className="text-2xl font-bold">{post.title}</h1>
       <p className="text-gray-500">{post.content}</p>
       {post.image && <img src={post.image} alt={post.title} className="w-1/2 h-1/2" />}
-      <p className="text-gray-500">{post.tags.map((tag) => tag).join(" | ")}</p>
+      <p className="text-gray-500">
+        {post.tags.map((tag) => (
+          <span key={tag}>#{tag} </span>
+        ))}
+      </p>
       <p className="text-gray-500">post by: Thomas Raimondi</p>
     </>
   );
