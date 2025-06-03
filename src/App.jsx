@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import About from "./pages/About";
-import Posts from "./pages/Posts";
-import AddPost from "./pages/AddPost";
+import Posts from "./pages/Posts/Posts";
+import AddPost from "./pages/Posts/AddPost";
 import PostLayout from "./layouts/PostLayout";
-import DetailPost from "./pages/DetailPost";
+import DetailPost from "./pages/Posts/DetailPost";
 
 function App() {
   return (

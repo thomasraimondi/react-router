@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import HeaderPost from "../components/Post/HeaderPost";
+import HeaderPost from "../../components/Post/HeaderPost";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
