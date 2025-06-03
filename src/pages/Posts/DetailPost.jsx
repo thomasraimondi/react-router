@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const initialPost = {
@@ -25,7 +26,12 @@ export default function DetailPost() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold">{post.title}</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold">{post.title}</h1>
+        <Link to={`/posts/edit/${post.id}`}>
+          <button className="border-2 border-gray-200 rounded-md p-2 bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">Edit</button>
+        </Link>
+      </div>
       <p className="text-gray-500">{post.content}</p>
       {post.image && <img src={post.image} alt={post.title} className="w-1/2 h-1/2" />}
       <p className="text-gray-500">
