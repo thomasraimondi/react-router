@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Alert from "../../components/ui/Alert";
-import clsx from "clsx";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import Form from "../../components/ui/Form";
 
 const initialPost = {
   title: "",
@@ -21,15 +17,8 @@ const initialError = {
 
 export default function AddPost() {
   const navigate = useNavigate();
-  const [post, setPost] = useState({});
-  const [formPost, setFormPost] = useState(initialPost);
+  const [post, setPost] = useState(initialPost);
   const [error, setError] = useState(initialError);
-  const [tags, setTags] = useState([]);
-  const [tag, setTag] = useState("");
-
-  const handleChange = (e) => {
-    setFormPost({ ...formPost, [e.target.name]: e.target.value });
-  };
 
   const addPost = (post) => {
     axios
@@ -50,74 +39,14 @@ export default function AddPost() {
 
   const handleAddPost = (e) => {
     e.preventDefault();
-    addPost(formPost);
-  };
-
-  const handleAddTag = (e) => {
-    setTags([...tags, tag]);
-    setFormPost({ ...formPost, tags: [...formPost.tags, tag] });
-    setTag("");
+    addPost(post);
   };
 
   return (
     <>
       <div className="w-1/2 mx-auto ">
         <h1 className="text-2xl font-bold">Add new post</h1>
-        <form onSubmit={handleAddPost} className="flex flex-col gap-4 mt-10">
-          <label className={clsx("text-sm font-bold", error.invalidFields.includes("title") && "text-red-500")} htmlFor="title">
-            Title
-          </label>
-          <input
-            className={clsx("border-2 border-gray-200 rounded-md p-2", error.invalidFields.includes("title") && "border-red-500")}
-            type="text"
-            placeholder="Title"
-            value={formPost.title}
-            onChange={handleChange}
-            name="title"
-          />
-          <label className={clsx("text-sm font-bold", error.invalidFields.includes("content") && "text-red-500")} htmlFor="content">
-            Content
-          </label>
-          <input
-            className={clsx("border-2 border-gray-200 rounded-md p-2 h-40", error.invalidFields.includes("content") && "border-red-500")}
-            type="textarea"
-            placeholder="Content"
-            value={formPost.content}
-            onChange={handleChange}
-            name="content"
-          />
-          <label className={clsx("text-sm font-bold", error.invalidFields.includes("image") && "text-red-500")} htmlFor="image">
-            Image
-          </label>
-          <input
-            className={clsx("border-2 border-gray-200 rounded-md p-2", error.invalidFields.includes("image") && "border-red-500")}
-            type="text"
-            placeholder="Image"
-            value={formPost.image}
-            onChange={handleChange}
-            name="image"
-          />
-
-          <label className="text-sm font-bold" htmlFor="tags">
-            Tags
-          </label>
-          <div className="flex items-center gap-2">
-            <input className="border-2 border-gray-200 rounded-md p-2 grow" type="text" placeholder="Tags" value={tag} onChange={(e) => setTag(e.target.value)} name="tags" />
-            <button className="border-2 border-gray-200 rounded-md p-2" type="button" onClick={handleAddTag}>
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {formPost.tags.map((tag) => (
-              <span key={tag}>#{tag} </span>
-            ))}
-          </div>
-          <div className="flex justify-end">
-            <button className="border-2 border-gray-200 bg-blue-500 text-white rounded-md p-2" type="submit">
-              Add Post
-            </button>
-          </div>
-        </form>
+        <Form handleSubmit={handleAddPost} initialForm={post} setForm={setPost} error={error} submitText="Add Post" />
       </div>
     </>
   );
